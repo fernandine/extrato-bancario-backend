@@ -6,7 +6,6 @@ contrua uma camada de serviço, para uma operação muito realizada em bancos, p
 ## Como executar a aplicação 
 
 - Você pode executar a aplicação da maneira que quiser e utilizando a IDE de sua preferência. 
-- Caso queira executar a aplicação via linha de comando, execute primeiramente o comando:
 
 
 ## Requisitos de sistema
