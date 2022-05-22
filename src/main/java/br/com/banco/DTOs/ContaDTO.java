@@ -3,15 +3,12 @@ package br.com.banco.DTOs;
 import java.io.Serializable;
 
 import br.com.banco.entity.Conta;
-import lombok.NonNull;
 
 
 public class ContaDTO implements Serializable {
 	private static final long serialVersionUID = 1L;
-	
-	@NonNull
+
 	private Long id;
-	@NonNull
 	private String nome_responsavel;
 	
 	public ContaDTO() {
@@ -23,7 +20,7 @@ public class ContaDTO implements Serializable {
 	}
 
 
-	public ContaDTO(@NonNull Long id, @NonNull String nome_responsavel) {
+	public ContaDTO(Long id,  String nome_responsavel) {
 		super();
 		this.id = id;
 		this.nome_responsavel = nome_responsavel;

@@ -1,20 +1,17 @@
 package br.com.banco.services;
 
+import java.util.List;
 import java.util.Optional;
 
 import javax.persistence.EntityNotFoundException;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import br.com.banco.DTOs.ContaDTO;
-import br.com.banco.DTOs.TransferenciaDTO;
 import br.com.banco.entity.Conta;
-import br.com.banco.entity.Transferencia;
 import br.com.banco.repositories.ContaRepository;
 import br.com.banco.services.exceptions.DatabaseException;
 import br.com.banco.services.exceptions.ResourceNotFoundException;
@@ -24,18 +21,20 @@ public class ContaService {
 
 	@Autowired
 	private ContaRepository repository;
-
+	
+/*
 	@Transactional(readOnly = true)
 	public Page<ContaDTO> findAllPaged(PageRequest pageRequest) {
 		Page<Conta> list = repository.findAll(pageRequest);
 		return list.map(x -> new ContaDTO(x));
 
 	}
-
+	
+*/
 	@Transactional(readOnly = true)
 	public ContaDTO findById(Long id) {
 		Optional<Conta> obj = repository.findById(id);
-		Conta entity = obj.orElseThrow(() -> new ResourceNotFoundException("Entity not found!"));
+		Conta entity = obj.orElseThrow(() -> new ResourceNotFoundException("Entidade não encontrada"));
 		return new ContaDTO(entity);
 	}
 
@@ -55,7 +54,7 @@ public class ContaService {
 			entity = repository.save(entity);
 			return new ContaDTO(entity);
 		} catch (EntityNotFoundException e) {
-			throw new ResourceNotFoundException("Id not found " + id);
+			throw new ResourceNotFoundException("Id não encontrado! " + id);
 		}
 	}
 
@@ -63,9 +62,9 @@ public class ContaService {
 		try {
 			repository.deleteById(id);
 		} catch (EntityNotFoundException e) {
-			throw new ResourceNotFoundException("Id not found " + id);
+			throw new ResourceNotFoundException("Id não encontrado! " + id);
 		} catch (DataIntegrityViolationException e) {
-			throw new DatabaseException("Integrity violation");
+			throw new DatabaseException("Violacao de integridade");
 		}
 	}
 
@@ -74,5 +73,8 @@ public class ContaService {
 		entity.setId(dto.getId());
 		entity.setNome_responsavel(dto.getNome_responsavel());
 
+	}
+	public List<Conta> findAll() {
+		return repository.findAll();
 	}
 }

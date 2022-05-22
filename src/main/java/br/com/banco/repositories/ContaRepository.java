@@ -6,6 +6,7 @@ import org.springframework.stereotype.Repository;
 import br.com.banco.entity.Conta;
 
 @Repository
-public interface ContaRepository extends JpaRepository<Conta, Long> {
+public interface ContaRepository extends JpaRepository<Conta, Long>{
+
 
 }

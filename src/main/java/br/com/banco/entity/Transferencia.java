@@ -1,5 +1,6 @@
 package br.com.banco.entity;
 
+import java.io.Serializable;
 import java.time.Instant;
 import java.util.Objects;
 
@@ -8,40 +9,45 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.Table;
 
 import lombok.NonNull;
 
 @Entity
-@Table(name = "id_tranferencia")
-public class Transferencia {
+public class Transferencia implements Serializable{
 
+	private static final long serialVersionUID = 1L;
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@NonNull
 	private Long id;
+	
 	@Column(columnDefinition = "TIMESTAMP WITHOUT TIME ZONE")
+	@NonNull
 	private Instant data_transferencia;
 	@NonNull
 	private Integer valor;
 	@NonNull
 	private String tipo;
-	@NonNull
+
 	private String nome_operador_transacao;
 	@NonNull
-	private double conta;
+	private Double conta_id;
+
+
 
 	public Transferencia() {
 	}
 
 	public Transferencia(Long id, Instant data_transferencia, Integer valor, String tipo,
-			String nome_operador_transacao, double conta) {
+			String nome_operador_transacao, double conta_id) {
 		super();
 		this.id = id;
 		this.data_transferencia = data_transferencia;
 		this.valor = valor;
 		this.tipo = tipo;
 		this.nome_operador_transacao = nome_operador_transacao;
-		this.conta = conta;
+		this.conta_id = conta_id;
+
 	}
 
 	public Long getId() {
@@ -84,13 +90,16 @@ public class Transferencia {
 		this.nome_operador_transacao = nome_operador_transacao;
 	}
 
-	public double getConta() {
-		return conta;
+
+	public Double getConta_id() {
+		return conta_id;
 	}
 
-	public void setConta(double conta) {
-		this.conta = conta;
+	public void setConta_id(Double conta_id) {
+		this.conta_id = conta_id;
 	}
+	
+
 
 	@Override
 	public int hashCode() {

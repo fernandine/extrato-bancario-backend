@@ -1,13 +1,12 @@
 package br.com.banco.services;
 
+import java.util.List;
 import java.util.Optional;
 
 import javax.persistence.EntityNotFoundException;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -23,12 +22,14 @@ public class TransferenciaService {
 	@Autowired
 	private TransferenciaRepository repository;
 
+	/*
 	@Transactional(readOnly = true)
 	public Page<TransferenciaDTO> findAllPaged(PageRequest pageRequest) {
 		Page<Transferencia> list = repository.findAll(pageRequest);
 		return list.map(x -> new TransferenciaDTO(x));
 
 	}
+	*/
 
 	@Transactional(readOnly = true)
 	public TransferenciaDTO findById(Long id) {
@@ -74,11 +75,11 @@ public class TransferenciaService {
 		entity.setTipo(dto.getTipo());
 		entity.setValor(dto.getValor());
 
-		
-
-	
 
 		}
-
+	
+	public List<Transferencia> findAll() {
+		return repository.findAll();
 	}
 
+	}

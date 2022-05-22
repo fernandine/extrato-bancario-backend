@@ -7,36 +7,36 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.Table;
 
 import lombok.NonNull;
 
 @Entity
-@Table(name = "tb_conta")
 public class Conta implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long id;
+	@NonNull
+	private Long id_conta;
 	@NonNull
 	private String nome_responsavel;
+	
 
 	public Conta() {
 	}
 
-	public Conta(Long id, String nome_responsavel) {
+	public Conta(Long id_conta, String nome_responsavel) {
 		super();
-		this.id = id;
+		this.id_conta = id_conta;
 		this.nome_responsavel = nome_responsavel;
 	}
 
 	public Long getId() {
-		return id;
+		return id_conta;
 	}
 
-	public void setId(Long id) {
-		this.id = id;
+	public void setId(Long id_conta) {
+		this.id_conta = id_conta;
 	}
 
 	public String getNome_responsavel() {
@@ -49,7 +49,7 @@ public class Conta implements Serializable {
 
 	@Override
 	public int hashCode() {
-		return Objects.hash(id);
+		return Objects.hash(id_conta);
 	}
 
 	@Override
@@ -61,7 +61,7 @@ public class Conta implements Serializable {
 		if (getClass() != obj.getClass())
 			return false;
 		Conta other = (Conta) obj;
-		return Objects.equals(id, other.id);
+		return Objects.equals(id_conta, other.id_conta);
 	}
 
 }

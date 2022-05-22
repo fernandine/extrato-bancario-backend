@@ -3,35 +3,22 @@ package br.com.banco.DTOs;
 import java.io.Serializable;
 import java.time.Instant;
 
-import javax.persistence.Column;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-
 import br.com.banco.entity.Transferencia;
-import lombok.NonNull;
-
 
 public class TransferenciaDTO implements Serializable {
 	private static final long serialVersionUID = 1L;
-	
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+
+
 	private Long id;
-	@Column(columnDefinition = "TIMESTAMP WITHOUT TIME ZONE")
 	private Instant data_transferencia;
-	@NonNull
 	private Integer valor;
-	@NonNull
 	private String tipo;
-	@NonNull
 	private String nome_operador_transacao;
-	@NonNull
-	private double conta;
-	
+	private double conta_id;
+
 	public TransferenciaDTO() {
 	}
-	
+
 	public TransferenciaDTO(Transferencia x) {
 		id = x.getId();
 		data_transferencia = x.getData_transferencia();
@@ -40,17 +27,15 @@ public class TransferenciaDTO implements Serializable {
 		nome_operador_transacao = x.getNome_operador_transacao();
 	}
 
-	
-
-	public TransferenciaDTO(Long id, Instant data_transferencia, @NonNull Integer valor, @NonNull String tipo,
-			@NonNull String nome_operador_transacao, @NonNull double conta) {
+	public TransferenciaDTO(Long id, Instant data_transferencia, Integer valor, String tipo,
+			String nome_operador_transacao, double conta_id) {
 		super();
 		this.id = id;
 		this.data_transferencia = data_transferencia;
 		this.valor = valor;
 		this.tipo = tipo;
 		this.nome_operador_transacao = nome_operador_transacao;
-		this.conta = conta;
+		this.conta_id = conta_id;
 	}
 
 	public Long getId() {
@@ -93,14 +78,14 @@ public class TransferenciaDTO implements Serializable {
 		this.nome_operador_transacao = nome_operador_transacao;
 	}
 
-	public double getConta() {
-		return conta;
+	public double getConta_id() {
+		return conta_id;
 	}
 
-	public void setConta(double conta) {
-		this.conta = conta;
+	public void setConta_id(double conta_id) {
+		this.conta_id = conta_id;
 	}
-
-}
 
 	
+
+}
